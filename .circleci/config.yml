@@ -1,0 +1,40 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8
+    working_directory: ~/rickysmemebank.biz
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn ci
+  deploy:
+    docker:
+      - image: circleci/node:8
+    working_directory: ~/rickysmemebank.biz
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          - v1-dependencies-
+      - run: |
+          ssh-keyscan -H 206.189.222.25 >> ~/.ssh/known_hosts
+          ssh root@206.189.222.25 'source ~/deploy.sh rickysmemebank.biz git@github.com:hweeks/rickysmemebank.biz.git'
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          filters:
+              branches:
+                  only: master
