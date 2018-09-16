@@ -47,6 +47,7 @@ export const MemesLoading = styled.div`
   font-size: 420px;
   animation: ${rotationBuilder(10)} 1s linear infinite;
   overflow: hidden;
+  line-height: 100vh;
 `;
 
 

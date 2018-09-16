@@ -18,9 +18,8 @@ export const MemeTainer = styled.div`
   #c49cdf 250px, #c49cdf 300px,
   #6599e2 300px, #6599e2 350px,
   #61c2e4 350px, #61c2e4 400px);
-  background-size: 100% 10px;
-  background-repeat:no-repeat;
   padding: 30px;
+  min-height: 70vh;
 `;
 
 export const MemeImg = styled.img`
@@ -36,4 +35,6 @@ export const MemeTitle = styled.div`
    background: -webkit-linear-gradient(-91deg, #EEF85B 5%, #7AEC8D 53%, #09E5C3 91%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 3px;
+   -webkit-text-stroke-color: black;
 `;
