@@ -53,7 +53,7 @@ class MemeHolster extends PureComponent {
       this.fetchMemes('oldpeoplefacebook'),
       this.fetchMemes('surrealmemes')
     ]).then(newMemes => {
-      const flatMemes = newMemes.flat()
+      const flatMemes = newMemes.reduce((acc, val) => acc.concat(val), [])
       this.setState({memes: flatMemes.sort(randomIsh)})
     }).catch(err => {
       this.setState({error: err})
