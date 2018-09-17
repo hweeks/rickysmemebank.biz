@@ -56,14 +56,16 @@ class MemeHolster extends PureComponent {
       const flatMemes = newMemes.flat()
       this.setState({memes: flatMemes.sort(randomIsh)})
     }).catch(err => {
-      this.setState({error: true})
+      this.setState({error: err})
     })
   }
 
   render() {
     const {error, memes} = this.state || {}
     if (error) {
-      return(<div>my code sucks more than memes, try again later loser</div>)
+      return(<div>my code sucks more than memes, try again later loser
+        <pre>{error}</pre>
+        </div>)
     }
     if (!memes) {
       return(<div><MemesLoading>🖕</MemesLoading></div>)
