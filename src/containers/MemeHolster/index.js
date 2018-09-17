@@ -63,9 +63,8 @@ class MemeHolster extends PureComponent {
   render() {
     const {error, memes} = this.state || {}
     if (error) {
-      return(<div>my code sucks more than memes, try again later loser
-        <pre>{error}</pre>
-        </div>)
+      console.log(error)
+      return(<div>my code sucks more than memes, try again later loser</div>)
     }
     if (!memes) {
       return(<div><MemesLoading>🖕</MemesLoading></div>)
